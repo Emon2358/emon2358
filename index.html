@@ -1,237 +1,295 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>emon2358</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&family=Roboto+Mono&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&family=Roboto+Mono&display=swap" rel="stylesheet" />
     <style>
-      body,
-      html {
-        height: 100%;
-        margin: 0;
-        font-family: "Roboto Mono", monospace;
-        color: #0f0;
-        background-color: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .bg {
-        background-image: url("https://i.pinimg.com/originals/74/b2/fc/74b2fc26f7536e063096991488fdd23a.jpg");
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        z-index: -1;
-      }
-      .content {
-        text-align: center;
-        z-index: 1;
-      }
-      .user-icon-container {
-        position: relative;
-        display: inline-block;
-      }
-      .user-icon {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        overflow: hidden;
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-      .user-icon:hover {
-        transform: scale(1.1);
-      }
-      .user-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .slide-text {
-        position: absolute;
-        left: -220px;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.8);
-        padding: 15px;
-        border-radius: 10px;
-        opacity: 0;
-        transition: opacity 0.3s, transform 0.3s;
-        pointer-events: none;
-        width: 200px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border: 1px solid #0f0;
-      }
-      .user-icon-container.active .slide-text {
-        opacity: 1;
-        pointer-events: auto;
-        animation: glitchAnimation 0.5s ease-out;
-      }
-      @keyframes glitchAnimation {
-        0% {
-          clip-path: inset(0 0 0 0);
-          transform: translateY(-50%) translateX(20px);
+        :root {
+            --text-color: #0f0;
+            --bg-color: #000;
+            --hover-color: #0ff;
         }
-        20% {
-          clip-path: inset(33% 0 66% 0);
-          transform: translateY(-50%) translateX(10px);
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Roboto Mono", monospace;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s, color 0.3s;
         }
-        40% {
-          clip-path: inset(66% 0 33% 0);
-          transform: translateY(-50%) translateX(5px);
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
         }
-        60% {
-          clip-path: inset(33% 0 66% 0);
-          transform: translateY(-50%) translateX(2px);
+        .user-icon-container {
+            position: relative;
+            margin-bottom: 20px;
         }
-        80% {
-          clip-path: inset(66% 0 33% 0);
-          transform: translateY(-50%) translateX(1px);
+        .user-icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        100% {
-          clip-path: inset(0 0 0 0);
-          transform: translateY(-50%) translateX(0);
+        .user-icon:hover {
+            transform: scale(1.1);
         }
-      }
-      .emon {
-        font-family: "Noto Serif JP", serif;
-        font-size: 36px;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-      .links {
-        display: flex;
-        justify-content: space-around;
-      }
-      .links a {
-        color: #0f0;
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s;
-      }
-      .links a:hover {
-        color: #0ff;
-      }
-      .typing-text {
-        font-size: 24px;
-        margin-top: 20px;
-        height: 60px;
-      }
-      .clock {
-        font-size: 36px;
-        margin-top: 20px;
-        text-shadow: 0 0 10px #0f0;
-      }
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
+        .user-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        50% {
-          opacity: 0;
+        .slide-text {
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid var(--text-color);
+            margin-top: 10px;
         }
-      }
-      .cursor {
-        display: inline-block;
-        width: 10px;
-        height: 24px;
-        background-color: #0f0;
-        margin-left: 5px;
-        animation: blink 0.7s infinite;
-      }
+        .user-icon-container.active .slide-text {
+            opacity: 1;
+            pointer-events: auto;
+            animation: glitchAnimation 0.5s ease-out;
+        }
+        @keyframes glitchAnimation {
+            0% { clip-path: inset(0 0 0 0); transform: translateX(-50%) translateY(0); }
+            20% { clip-path: inset(33% 0 66% 0); transform: translateX(-50%) translateY(-5px); }
+            40% { clip-path: inset(66% 0 33% 0); transform: translateX(-50%) translateY(5px); }
+            60% { clip-path: inset(33% 0 66% 0); transform: translateX(-50%) translateY(-3px); }
+            80% { clip-path: inset(66% 0 33% 0); transform: translateX(-50%) translateY(3px); }
+            100% { clip-path: inset(0 0 0 0); transform: translateX(-50%) translateY(0); }
+        }
+        .emon {
+            font-family: "Noto Serif JP", serif;
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .links {
+            display: flex;
+            justify-content: space-around;
+        }
+        .links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .links a:hover {
+            color: var(--hover-color);
+        }
+        .typing-text {
+            font-size: 24px;
+            margin-top: 20px;
+            height: 60px;
+            text-align: center;
+        }
+        .clock {
+            font-size: 36px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px var(--text-color);
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 24px;
+            background-color: var(--text-color);
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .skill {
+            background-color: rgba(0, 255, 0, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .skill:hover {
+            transform: scale(1.1);
+            background-color: rgba(0, 255, 255, 0.3);
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        @media (max-width: 600px) {
+            .user-icon {
+                width: 100px;
+                height: 100px;
+            }
+            .emon {
+                font-size: 28px;
+            }
+            .typing-text {
+                font-size: 18px;
+            }
+            .clock {
+                font-size: 28px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div class="bg"></div>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="theme-toggle" id="themeToggle">🌓</button>
     <div class="content">
-      <div class="user-icon-container" id="iconContainer">
-        <div class="user-icon">
-          <img
-            src="https://i.pinimg.com/736x/b3/c9/6a/b3c96a3e8bbcb74598049e76c1bb5367.jpg"
-            alt="User Icon"
-          />
+        <div class="user-icon-container" id="iconContainer">
+            <div class="user-icon">
+                <img src="https://i.pinimg.com/736x/b3/c9/6a/b3c96a3e8bbcb74598049e76c1bb5367.jpg" alt="User Icon" />
+            </div>
+            <div class="slide-text">
+                <div class="emon">衛門</div>
+                <div class="links">
+                    <a href="https://github.com/emon2358" target="_blank">emon2358</a>
+                    <a href="https://www.youtube.com/@unk_893" target="_blank">l1nda</a>
+                </div>
+            </div>
         </div>
-        <div class="slide-text">
-          <div class="emon">衛門</div>
-          <div class="links">
-            <a href="https://github.com/emon2358" target="_blank">emon2358</a>
-            <a href="https://www.youtube.com/@unk_893" target="_blank">l1nda</a>
-          </div>
+        <div class="typing-text">
+            I'm<br />
+            <span id="typingText"></span><span class="cursor"></span>
         </div>
-      </div>
-      <div class="typing-text">
-        I'm<br />
-        <span id="typingText"></span><span class="cursor"></span>
-      </div>
-      <div class="clock" id="localClock"></div>
+        <div class="clock" id="localClock"></div>
+        <div class="skills">
+            <div class="skill">Python</div>
+            <div class="skill">ChatGPT</div>
+            <div class="skill">Web Dev</div>
+            <div class="skill">AI</div>
+        </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script>
-      const iconContainer = document.getElementById("iconContainer");
-      iconContainer.addEventListener("click", function () {
-        this.classList.toggle("active");
-      });
+        const iconContainer = document.getElementById("iconContainer");
+        iconContainer.addEventListener("click", function () {
+            this.classList.toggle("active");
+        });
 
-      const texts = ["python developer", "chat gpt prompt creater"];
-      let textIndex = 0;
-      let charIndex = 0;
-      const typingElement = document.getElementById("typingText");
+        const texts = ["python developer", "chat gpt prompt creator", "AI enthusiast"];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typingElement = document.getElementById("typingText");
 
-      function typeText() {
-        if (charIndex < texts[textIndex].length) {
-          if (Math.random() < 0.1) {
-            // 10% chance for a glitch
-            typingElement.innerHTML += `<span style="color: #f00;">${texts[textIndex][charIndex]}</span>`;
-          } else {
-            typingElement.innerHTML += texts[textIndex][charIndex];
-          }
-          charIndex++;
-          setTimeout(typeText, 100);
-        } else {
-          setTimeout(eraseText, 2000);
+        function typeText() {
+            if (charIndex < texts[textIndex].length) {
+                if (Math.random() < 0.1) {
+                    typingElement.innerHTML += `<span style="color: #f00;">${texts[textIndex][charIndex]}</span>`;
+                } else {
+                    typingElement.innerHTML += texts[textIndex][charIndex];
+                }
+                charIndex++;
+                setTimeout(typeText, 100);
+            } else {
+                setTimeout(eraseText, 2000);
+            }
         }
-      }
 
-      function eraseText() {
-        if (charIndex > 0) {
-          typingElement.innerHTML = texts[textIndex].substring(
-            0,
-            charIndex - 1
-          );
-          charIndex--;
-          setTimeout(eraseText, 50);
-        } else {
-          textIndex = (textIndex + 1) % texts.length;
-          setTimeout(typeText, 500);
+        function eraseText() {
+            if (charIndex > 0) {
+                typingElement.innerHTML = texts[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, 50);
+            } else {
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(typeText, 500);
+            }
         }
-      }
 
-      typeText();
+        typeText();
 
-      function updateClock() {
-        const now = new Date();
-        const clockElement = document.getElementById("localClock");
-        const hours = now.getHours().toString().padStart(2, "0");
-        const minutes = now.getMinutes().toString().padStart(2, "0");
-        const seconds = now.getSeconds().toString().padStart(2, "0");
+        function updateClock() {
+            const now = new Date();
+            const clockElement = document.getElementById("localClock");
+            const hours = now.getHours().toString().padStart(2, "0");
+            const minutes = now.getMinutes().toString().padStart(2, "0");
+            const seconds = now.getSeconds().toString().padStart(2, "0");
 
-        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
-      }
+            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
 
-      updateClock();
-      setInterval(updateClock, 1000);
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTextColor = getComputedStyle(root).getPropertyValue('--text-color');
+            if (currentTextColor.trim() === '#0f0') {
+                root.style.setProperty('--text-color', '#000');
+                root.style.setProperty('--bg-color', '#fff');
+                root.style.setProperty('--hover-color', '#0000ff');
+            } else {
+                root.style.setProperty('--text-color', '#0f0');
+                root.style.setProperty('--bg-color', '#000');
+                root.style.setProperty('--hover-color', '#0ff');
+            }
+        });
+
+        // Particle.js configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 }, },
+                opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } },
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } },
+            },
+            retina_detect: true,
+        });
     </script>
-  </body>
+</body>
 </html>
