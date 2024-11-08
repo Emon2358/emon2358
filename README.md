@@ -5,7 +5,7 @@
 ![衛門's GitHub stats](https://github-readme-stats.vercel.app/api?username=Emon2358&show_icons=true&theme=ambient_gradient) [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Emon2358&layout=donut&theme=ambient_gradient)](https://github.com/anuraghazra/github-readme-stats)
 
 <!-- 背景画像の表示 -->
-<div style="background-image: url('https://github.com/user-attachments/assets/1dd2179a-2ebd-4527-9056-60f40f42ef79'); background-size: cover; height: 100vh; width: 100%; padding: 20px;">
+<div style="background-image: url('https://raw.githubusercontent.com/Emon2358/emon2358/refs/heads/main/serialexperimentslain1_pndu.png'); background-size: cover; height: 100vh; width: 100%; padding: 20px;">
   <h1></h1>
   <p></p>
 </div>
