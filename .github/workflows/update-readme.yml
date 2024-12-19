@@ -1,7 +1,7 @@
 name: Update Profile README
 on:
   schedule:
-    - cron: "0 */6 * * *"  # Fixed cron syntax
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 jobs:
   update-readme:
@@ -14,7 +14,7 @@ jobs:
           deno-version: v1.x
       - name: Generate README
         run: |
-          deno run --allow-net --allow-write --allow-env src/index.ts  # Updated path to index.ts
+          deno run --allow-net --allow-write --allow-read --allow-env src/index.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit and Push
