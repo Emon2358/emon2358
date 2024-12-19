@@ -26,9 +26,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git pull origin master --rebase
           git add README.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update README"
-          git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update README" && git pull --rebase origin master && git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
