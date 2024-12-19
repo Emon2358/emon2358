@@ -25,6 +25,12 @@ interface RepoLanguages {
 class GitHubProfileGenerator {
   private octokit: Octokit;
   private graphqlWithAuth: typeof graphql;
+  private customAsciiArt: string = `888'Y88                               ,8,"88e  ,8,"88b, 8888888  ,d8 8b,  
+888 ,'Y 888 888 8e   e88 88e  888 8e   "  888D  " ,88P' 88       "Y8 8P"  
+888C8   888 888 88b d888 888b 888 88b     88P     C8K   """Y88b  ,d8 8b,  
+888 ",d 888 888 888 Y888 888P 888 888    ,*"    e \`88b,  e  888 C888 888D 
+888,d88 888 888 888  "88 88"  888 888  8888888 "8",88P' "8",88P  "Y8 8P"  
+`;
 
   constructor(token: string) {
     this.octokit = new Octokit({ auth: token });
@@ -205,7 +211,6 @@ class GitHubProfileGenerator {
         this.getGithubFollowers(username),
       ]);
 
-    const asciiHeader = figlet.textSync("SAD", { font: "Standard" });
     const githubFollowersBadge = this.createAsciiBadge(
       "Followers",
       githubFollowers.toString(),
@@ -220,7 +225,7 @@ class GitHubProfileGenerator {
     let output = "> [!WARNING]\n> ```\n";
 
     // Combine header and badges
-    const headerLines = asciiHeader.split("\n");
+    const headerLines = this.customAsciiArt.split("\n");
     const badgesString = `${githubFollowersBadge}\n\n${githubStarsBadge}`;
     const badgeLines = badgesString.split("\n");
     const maxHeaderWidth = Math.max(
