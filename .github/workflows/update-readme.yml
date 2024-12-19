@@ -1,27 +1,22 @@
 name: Update Profile README
-
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 */6 * * *"  # Fixed cron syntax
   workflow_dispatch:
-
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-
       - name: Generate README
         run: |
-          deno run --allow-net --allow-write --allow-env index.ts
+          deno run --allow-net --allow-write --allow-env src/index.ts  # Updated path to index.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Commit and Push
         run: |
           git config --global user.name 'github-actions[bot]'
