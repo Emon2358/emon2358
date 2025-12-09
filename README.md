@@ -73,23 +73,23 @@ C++          [▓░░░░░░░░░░░░░░░░░░░] 0.1%
 +-------------+------------------------+----------------+--------------------------------------+
 |   Metric    |         Value          |     Metric     |                Value                 |
 +-------------+------------------------+----------------+--------------------------------------+
-|   Commits   |                   2303 | Issues opened  |                                    0 |
+|   Commits   |                   2316 | Issues opened  |                                    0 |
 | PRs opened  |                      0 | Stars received |                                   61 |
-| Repos owned |                    270 | Contributed to |                                    0 |
+| Repos owned |                    271 | Contributed to |                                    0 |
 +-------------+------------------------+----------------+--------------------------------------+
 ```
 
 #### 🔥 Activity
 ```
 ------------------------------------------------------------
-2025-12-04 05:44 | Create          | Emon2358/kurokoge
-2025-11-28 12:28 | Push            | Emon2358/nes-test
-2025-11-27 01:36 | Push            | Emon2358/l1nda-cluster-last-rave-vj-tool-on-web
-2025-11-27 01:31 | Push            | Emon2358/l1nda-cluster-last-rave-vj-tool-on-web
-2025-11-27 01:23 | Push            | Emon2358/l1nda-cluster-last-rave-vj-tool-on-web
+2025-12-09 06:35 | Push            | Emon2358/ZPD-converter
+2025-12-09 06:35 | Push            | Emon2358/ZPD-converter
+2025-12-09 06:29 | Push            | Emon2358/ZPD-converter
+2025-12-09 06:25 | Push            | Emon2358/ZPD-converter
+2025-12-09 06:25 | Push            | Emon2358/ZPD-converter
 ------------------------------------------------------------
 
-Last updated: 2025-12-09 02:06:08
+Last updated: 2025-12-09 06:41:52
 ```
 
 > [!NOTE]
